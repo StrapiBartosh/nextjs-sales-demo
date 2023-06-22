@@ -1,3 +1,7 @@
+# Please Note!
+
+This Sales demo is based on the NextJS Corporate Starter. Below is the original ReadMe file for the app, with small changes specific to the sales demo.
+
 # Strapi Starter Next 13, Tailwind, Typescript and Strapi
 
 note: This project was started with love by [Trecia](https://github.com/TreciaKS), [Daniel](https://github.com/malgamves) and [Paul](https://github.com/PaulBratslavsky). We were all new to Next 13 and Typescript. If you find any bugs or improvements feel free to create an issue. Thank you all for your support and participation.
@@ -9,9 +13,9 @@ note: This project was started with love by [Trecia](https://github.com/TreciaKS
 1. Clone the repository locally:
 
 ```bash
-  git clone https://github.com/strapi/nextjs-corporate-starter.git
+  git clone https://github.com/StrapiBartosh/nextjs-sales-demo.git
     or
-  gh repo clone strapi/nextjs-corporate-starter
+  gh repo clone StrapiBartosh/nextjs-sales-demo
 ```
 
 2. Run `setup` command to setup frontend and backend dependencies:
@@ -71,7 +75,7 @@ https://github.com/strapi/nextjs-corporate-starter/assets/6153188/80f00bf5-d17b-
 
 ## Setting Up The Frontend
 
-Next we need to switch to our `/frontend` directory and create our `.env` file and paste in the following. 
+Next we need to switch to our `/frontend` directory and create our `.env` file and paste in the following.
 
 ```bash
 NEXT_PUBLIC_STRAPI_API_TOKEN=your-api-token
@@ -298,8 +302,9 @@ yarn repo:upstream
 ## FAQ
 
 ### How do I add additional pages?
-Check out [this video](https://youtu.be/EoVrTNA3geM) where I will guide on how to do this. 
+
+Check out [this video](https://youtu.be/EoVrTNA3geM) where I will guide on how to do this.
 
 ### How do I update my Strapi version?
-Check out this [this issue comment](https://github.com/strapi/nextjs-corporate-starter/issues/17#issuecomment-1558149967)
 
+Check out this [this issue comment](https://github.com/strapi/nextjs-corporate-starter/issues/17#issuecomment-1558149967)

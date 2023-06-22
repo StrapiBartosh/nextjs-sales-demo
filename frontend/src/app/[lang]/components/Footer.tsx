@@ -22,6 +22,14 @@ interface CategoryLink {
   };
 }
 
+interface MenuLinks {
+  id: number;
+  attributes: {
+    order: number;
+    title: string;
+  };
+}
+
 function FooterLink({ url, text }: FooterLink) {
   const path = usePathname();
   return (
@@ -73,6 +81,7 @@ export default function Footer({
   categoryLinks,
   legalLinks,
   socialLinks,
+  footerLinkCategories,
 }: {
   logoUrl: string | null;
   logoText: string | null;
@@ -80,8 +89,11 @@ export default function Footer({
   categoryLinks: Array<CategoryLink>;
   legalLinks: Array<FooterLink>;
   socialLinks: Array<FooterLink>;
+  footerLinkCategories: Array<MenuLinks>;
 }) {
-
+  footerLinkCategories.map((cat) => {
+    console.log(cat.attributes.title);
+  });
   return (
     <footer className="py-6 dark:bg-black dark:text-gray-50">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
@@ -90,6 +102,18 @@ export default function Footer({
             <Logo src={logoUrl}>
               {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
             </Logo>
+          </div>
+
+          <div className="col-span-6 text-center md:text-left md:col-span-3">
+            <>
+              {footerLinkCategories.map((cat) => {
+                return (
+                  <p className="pb-1 text-lg font-medium">
+                    {cat.attributes.title}
+                  </p>
+                );
+              })}
+            </>
           </div>
 
           <div className="col-span-6 text-center md:text-left md:col-span-3">

@@ -11,13 +11,13 @@ import Navbar from "./components/Navbar";
 const FALLBACK_SEO = {
   title: "Strapi Starter Next Blog",
   description: "Strapi Starter Next Blog",
-}
-
+};
 
 async function getGlobal(): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
-  if (!token) throw new Error("The Strapi API Token environment variable is not set.");
+  if (!token)
+    throw new Error("The Strapi API Token environment variable is not set.");
 
   const path = `/global`;
   const options = { headers: { Authorization: `Bearer ${token}` } };
@@ -35,6 +35,23 @@ async function getGlobal(): Promise<any> {
       "footer.socialLinks",
       "footer.categories",
     ],
+  };
+
+  const response = await fetchAPI(path, urlParamsObject, options);
+  return response;
+}
+
+async function getMenu(): Promise<any> {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+
+  if (!token)
+    throw new Error("The Strapi API Token environment variable is not set.");
+
+  const path = `/menus?nested&populate=*`;
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+
+  const urlParamsObject = {
+    // nested: ["items"],
   };
 
   const response = await fetchAPI(path, urlParamsObject, options);
@@ -68,8 +85,12 @@ export default async function RootLayout({
   const global = await getGlobal();
   // TODO: CREATE A CUSTOM ERROR PAGE
   if (!global.data) return null;
-  
+
   const { notificationBanner, navbar, footer } = global.data.attributes;
+
+  const menus = await getMenu();
+
+  const footerLinks = menus.data[0].attributes.items.data;
 
   const navbarLogoUrl = getStrapiMedia(
     navbar.navbarLogo.logoImg.data.attributes.url
@@ -79,6 +100,8 @@ export default async function RootLayout({
     footer.footerLogo.logoImg.data.attributes.url
   );
 
+  // console.log(menus.data[0].attributes);
+  console.log(footerLinks);
   return (
     <html lang={params.lang}>
       <body>
@@ -101,6 +124,7 @@ export default async function RootLayout({
           categoryLinks={footer.categories.data}
           legalLinks={footer.legalLinks}
           socialLinks={footer.socialLinks}
+          footerLinkCategories={footerLinks}
         />
       </body>
     </html>
