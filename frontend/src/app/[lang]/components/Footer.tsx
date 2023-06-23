@@ -27,6 +27,18 @@ interface MenuLinks {
   attributes: {
     order: number;
     title: string;
+    children: {
+      [key: string]: any;
+    };
+  };
+}
+
+interface InnerLink {
+  id: number;
+  attributes: {
+    target: string;
+    title: string;
+    url: string;
   };
 }
 
@@ -46,14 +58,11 @@ function FooterLink({ url, text }: FooterLink) {
   );
 }
 
-function CategoryLink({ attributes }: CategoryLink) {
+function InnerLink({ id, attributes }: InnerLink) {
   return (
-    <li className="flex">
-      <Link
-        href={`/blog/${attributes.slug}`}
-        className="hover:dark:text-violet-400"
-      >
-        {attributes.name}
+    <li className="flex" key={id}>
+      <Link href={`${attributes.url}`} className="hover:dark:text-violet-400">
+        {attributes.title}
       </Link>
     </li>
   );
@@ -77,23 +86,16 @@ function RenderSocialIcon({ social }: { social: string | undefined }) {
 export default function Footer({
   logoUrl,
   logoText,
-  menuLinks,
-  categoryLinks,
   legalLinks,
   socialLinks,
   footerLinkCategories,
 }: {
   logoUrl: string | null;
   logoText: string | null;
-  menuLinks: Array<FooterLink>;
-  categoryLinks: Array<CategoryLink>;
   legalLinks: Array<FooterLink>;
   socialLinks: Array<FooterLink>;
   footerLinkCategories: Array<MenuLinks>;
 }) {
-  footerLinkCategories.map((cat) => {
-    console.log(cat.attributes.title);
-  });
   return (
     <footer className="py-6 dark:bg-black dark:text-gray-50">
       <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
@@ -104,35 +106,22 @@ export default function Footer({
             </Logo>
           </div>
 
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <>
-              {footerLinkCategories.map((cat) => {
-                return (
-                  <p className="pb-1 text-lg font-medium">
+          {footerLinkCategories.map((cat) => {
+            return (
+              <div className="col-span-6 text-center md:text-left md:col-span-3">
+                <>
+                  <p className="pb-1 text-lg font-medium" key={cat.id}>
                     {cat.attributes.title}
                   </p>
-                );
-              })}
-            </>
-          </div>
-
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium">Categories</p>
-            <ul>
-              {categoryLinks.map((link: CategoryLink) => (
-                <CategoryLink key={link.id} {...link} />
-              ))}
-            </ul>
-          </div>
-
-          <div className="col-span-6 text-center md:text-left md:col-span-3">
-            <p className="pb-1 text-lg font-medium">Menu</p>
-            <ul>
-              {menuLinks.map((link: FooterLink) => (
-                <FooterLink key={link.id} {...link} />
-              ))}
-            </ul>
-          </div>
+                  <ol>
+                    {cat.attributes.children.data.map((menuItem: InnerLink) => (
+                      <InnerLink key={menuItem.id} {...menuItem} />
+                    ))}
+                  </ol>
+                </>
+              </div>
+            );
+          })}
         </div>
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex">
@@ -142,9 +131,9 @@ export default function Footer({
             <ul className="flex">
               {legalLinks.map((link: FooterLink) => (
                 <Link
+                  key={link.id}
                   href={link.url}
                   className="text-gray-400 hover:text-gray-300 mr-2"
-                  key={link.id}
                 >
                   {link.text}
                 </Link>

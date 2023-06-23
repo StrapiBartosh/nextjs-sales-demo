@@ -100,8 +100,6 @@ export default async function RootLayout({
     footer.footerLogo.logoImg.data.attributes.url
   );
 
-  // console.log(menus.data[0].attributes);
-  console.log(footerLinks);
   return (
     <html lang={params.lang}>
       <body>
@@ -120,8 +118,6 @@ export default async function RootLayout({
         <Footer
           logoUrl={footerLogoUrl}
           logoText={footer.footerLogo.logoText}
-          menuLinks={footer.menuLinks}
-          categoryLinks={footer.categories.data}
           legalLinks={footer.legalLinks}
           socialLinks={footer.socialLinks}
           footerLinkCategories={footerLinks}
