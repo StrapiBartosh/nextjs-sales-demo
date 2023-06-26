@@ -14,14 +14,6 @@ interface FooterLink {
   social?: string;
 }
 
-interface CategoryLink {
-  id: string;
-  attributes: {
-    name: string;
-    slug: string;
-  };
-}
-
 interface MenuLinks {
   id: number;
   attributes: {
@@ -106,22 +98,26 @@ export default function Footer({
             </Logo>
           </div>
 
-          {footerLinkCategories.map((cat) => {
-            return (
-              <div className="col-span-6 text-center md:text-left md:col-span-3">
-                <>
-                  <p className="pb-1 text-lg font-medium" key={cat.id}>
-                    {cat.attributes.title}
-                  </p>
-                  <ol>
-                    {cat.attributes.children.data.map((menuItem: InnerLink) => (
-                      <InnerLink key={menuItem.id} {...menuItem} />
-                    ))}
-                  </ol>
-                </>
-              </div>
-            );
-          })}
+          <div className="flex justify-between pb-6 col-span-full md:pb-0 md:col-span-6">
+            {footerLinkCategories.map((cat) => {
+              return (
+                <div className="text-center md:text-left">
+                  <>
+                    <p className="pb-1 text-lg font-medium" key={cat.id}>
+                      {cat.attributes.title}
+                    </p>
+                    <ol>
+                      {cat.attributes.children.data.map(
+                        (menuItem: InnerLink) => (
+                          <InnerLink key={menuItem.id} {...menuItem} />
+                        )
+                      )}
+                    </ol>
+                  </>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="grid justify-center pt-6 lg:justify-between">
           <div className="flex">
