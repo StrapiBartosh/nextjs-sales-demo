@@ -9,21 +9,24 @@
   "options": {},
   "attributes": {
     "url": {
-      "type": "string"
+      "type": "string",
+      "default": "www.strapi.io"
     },
     "newTab": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "text": {
-      "type": "string"
+      "type": "string",
+      "default": "Visit Today!"
     },
     "type": {
       "type": "enumeration",
       "enum": [
         "primary",
         "secondary"
-      ]
+      ],
+      "default": "primary"
     }
   }
 }

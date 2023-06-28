@@ -34,6 +34,7 @@ async function getGlobal(): Promise<any> {
       "footer.legalLinks",
       "footer.socialLinks",
       "footer.categories",
+      "FooterForm",
     ],
   };
 
@@ -53,6 +54,21 @@ async function getMenu(): Promise<any> {
   const urlParamsObject = {
     // nested: ["items"],
   };
+
+  const response = await fetchAPI(path, urlParamsObject, options);
+  return response;
+}
+
+async function getFooterForm(): Promise<any> {
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+
+  if (!token)
+    throw new Error("The Strapi API Token environment variable is not set.");
+
+  const path = `/global?populate[FooterForm][populate]=*`;
+
+  const urlParamsObject = {};
+  const options = { headers: { Authorization: `Bearer ${token}` } };
 
   const response = await fetchAPI(path, urlParamsObject, options);
   return response;
@@ -118,6 +134,8 @@ export default async function RootLayout({
         <Footer
           logoUrl={footerLogoUrl}
           logoText={footer.footerLogo.logoText}
+          menuLinks={footer.menuLinks}
+          categoryLinks={footer.categories.data}
           legalLinks={footer.legalLinks}
           socialLinks={footer.socialLinks}
           footerLinkCategories={footerLinks}

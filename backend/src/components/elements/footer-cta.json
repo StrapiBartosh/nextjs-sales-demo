@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_elements_footer_ctas",
+  "info": {
+    "displayName": "footerCTA",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "default": "Contact us today!"
+    },
+    "description": {
+      "type": "string",
+      "default": "We'd love to hear from you!"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button-link"
+    }
+  }
+}

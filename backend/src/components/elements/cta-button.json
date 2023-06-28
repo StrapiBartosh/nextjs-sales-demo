@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_elements_cta_buttons",
+  "info": {
+    "displayName": "CTAButton"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "default": "www.strapi.io"
+    }
+  }
+}
