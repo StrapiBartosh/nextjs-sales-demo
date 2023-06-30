@@ -8,6 +8,7 @@
     "description": "Create your blog content"
   },
   "options": {
+    "reviewWorkflows": true,
     "draftAndPublish": true
   },
   "pluginOptions": {},

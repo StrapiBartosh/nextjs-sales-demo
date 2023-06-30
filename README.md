@@ -1,6 +1,8 @@
 # Please Note!
 
-This Sales demo is based on the NextJS Corporate Starter. Below is the original ReadMe file for the app, with small changes specific to the sales demo.
+This Sales demo is based on the NextJS Corporate Starter. Below is the original ReadMe file for the app, with small changes specific to the sales demo
+
+To import sales demo data, use sales-demo-export file
 
 # Strapi Starter Next 13, Tailwind, Typescript and Strapi
 

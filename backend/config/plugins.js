@@ -20,4 +20,16 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  email: {
+    config: {
+      provider: "sendgrid",
+      providerOptions: {
+        apiKey: env("SENDGRID_API_KEY"),
+      },
+      settings: {
+        defaultFrom: "bart.sakowski@strapi.io",
+        defaultReplyTo: "bart.sakowski@strapi.io",
+      },
+    },
+  },
 });
